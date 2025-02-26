@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { Heart, Play } from "lucide-react";
+import { Heart, Play, Calendar, Award } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import ProgressBar from "@/components/ProgressBar";
 
@@ -61,7 +61,10 @@ const Index = () => {
           <div className="grid grid-cols-2 gap-4">
             <div className="bg-white rounded-xl p-4 shadow-sm">
               <h3 className="text-gray-600 text-sm mb-1">Daily Streak</h3>
-              <p className="text-2xl font-semibold">7 days</p>
+              <div className="flex items-center gap-2">
+                <Award className="w-6 h-6 text-primary" />
+                <p className="text-2xl font-semibold">7 days</p>
+              </div>
             </div>
             <div className="bg-white rounded-xl p-4 shadow-sm">
               <h3 className="text-gray-600 text-sm mb-1">Songs Completed</h3>
