@@ -2,6 +2,8 @@
 import { useState } from "react";
 import Navigation from "@/components/Navigation";
 import LeaderboardEntry from "@/components/LeaderboardEntry";
+import { Share2 } from "lucide-react";
+import { toast } from "sonner";
 
 const Leaderboard = () => {
   const [leaderboardData] = useState([
@@ -17,10 +19,35 @@ const Leaderboard = () => {
     { id: 10, username: "songStar", points: 3000 },
   ]);
 
+  const handleShare = async () => {
+    try {
+      if (navigator.share) {
+        await navigator.share({
+          title: "Fill the Song - Leaderboard",
+          text: "Check out the top players on Fill the Song!",
+          url: window.location.href,
+        });
+      } else {
+        await navigator.clipboard.writeText(window.location.href);
+        toast.success("Link copied to clipboard!");
+      }
+    } catch (error) {
+      console.error("Error sharing:", error);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <div className="container px-4 py-8">
-        <h1 className="text-2xl font-semibold mb-6">Global Leaderboard</h1>
+        <div className="flex justify-between items-center mb-6">
+          <h1 className="text-2xl font-semibold">Global Leaderboard</h1>
+          <button
+            onClick={handleShare}
+            className="p-2 text-primary hover:bg-primary/10 rounded-full transition-colors"
+          >
+            <Share2 className="w-5 h-5" />
+          </button>
+        </div>
         
         <div className="bg-white rounded-xl shadow-sm overflow-hidden">
           {leaderboardData.map((entry, index) => (
