@@ -1,6 +1,7 @@
 
 import { Achievement } from "@/types/achievements";
 import { motion } from "framer-motion";
+import ProgressBar from "@/components/ProgressBar";
 
 interface AchievementCardProps {
   achievement: Achievement;
